@@ -1,0 +1,83 @@
+<div class="container">
+    <ng-container *ngIf="!inEditMode">
+        <div class="title">
+            <h1>Details Page</h1>
+        </div>
+        <div class="image">
+            <img src={{book?.imageUrl}} alt="no-img">
+        </div>
+        <article class="book">
+            <div class="info">
+                <h3>Book's Title: <span>{{book?.name}}</span></h3>
+                <h3>Book's Author: <span>{{book?.author}}</span></h3>
+                <h3>Year: <span>{{book?.year}}</span></h3>
+                <h3>Description: <span>{{book?.description}}</span></h3>
+                <h3>Owner: <span>{{book?.owner}}</span></h3>
+
+                <div class="buttons">
+                    <ng-container *ngIf="isAuthor">
+                        <button (click)="inEditMode = true">Edit</button>
+                        <button (click)="delete()">Delete</button>
+                    </ng-container>
+                    <ng-container *ngIf="!isAuthor">
+                        <button>Add to favourite</button>
+                    </ng-container>
+                </div>
+            </div>
+        </article>
+    </ng-container>
+
+
+    <ng-container *ngIf="inEditMode">
+        <!-- <div class="title">
+            <h1>Edit book</h1>
+        </div> -->
+        <div class="form">
+
+            <form #form="ngForm" (ngSubmit)="editBook(form)">
+                <fieldset>
+                    <h1 class="h1">Edit book</h1>
+                    <label>Book's Name</label>
+                    <input #name="ngModel" ngModel type="text" name="name" required minlength="3"
+                        [ngModel]="book?.name">
+                    <ng-container *ngIf="name.touched">
+                        <p class="error" *ngIf="name.errors?.['required']">Book's name is required!</p>
+                        <p class="error" *ngIf="name.errors?.['minlength']">You should have at least 3 characters!</p>
+                    </ng-container>
+                    <label>Year of publication</label>
+                    <input #year="ngModel" ngModel type="text" name="year" required minlength="2"
+                        [ngModel]="book?.year">
+                    <ng-container *ngIf="year.touched">
+                        <p class="error" *ngIf="year.errors?.['required']">Year of publication is required!</p>
+                        <p class="error" *ngIf="year.errors?.['minlength']">You should have at last 4 characters!</p>
+                    </ng-container>
+                    <label>ImageUrl</label>
+                    <input #imageUrl="ngModel" ngModel type="text" name="imageUrl" required [ngModel]="book?.imageUrl">
+                    <ng-container *ngIf="imageUrl.touched">
+                        <p class="error" *ngIf="imageUrl.errors?.['required']">ImageUrl is required!</p>
+                    </ng-container>
+                    <label>Year</label>
+                    <input #year="ngModel" ngModel type="text" name="year" required min="1950" max="2022"
+                        [ngModel]="book?.year">
+                    <ng-container *ngIf="year.touched">
+                        <p class="error" *ngIf="year.errors?.['required']">Year is required!</p>
+                        <p class="error" *ngIf="year.errors?.['min']">book year should be newer than 1950's!</p>
+                        <p class="error" *ngIf="year.errors?.['max']">book year cannot be in the future!</p>
+                    </ng-container>
+                    <label>Description</label>
+                    <input #description="ngModel" ngModel type="text" name="description" required minlength="10"
+                        maxlength="100" [ngModel]="book?.description">
+                    <ng-container *ngIf="description.touched">
+                        <p class="error" *ngIf="description.errors?.['required']">Description is required!</p>
+                        <p class="error" *ngIf="description.errors?.['minlength']">Description should have at least 10
+                            characters!</p>
+                        <p class="error" *ngIf="description.errors?.['maxlength']">Description shouldn't have more than
+                            100
+                            characters!</p>
+                    </ng-container>
+                    <input [disabled]="form.invalid" type="submit" value="Edit Book">
+                </fieldset>
+            </form>
+        </div>
+    </ng-container>
+</div>
