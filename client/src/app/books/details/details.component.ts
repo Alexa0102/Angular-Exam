@@ -13,13 +13,9 @@ import { BookService } from '../book.service';
 export class DetailsComponent {
   book: IBook | undefined;
   inEditMode: boolean = false;
-  get isAuthor(): boolean{
-    if(this.book?.owner == this.authService.user?.username){
-      return true
-    }else {
-      return false;
-    }
-  }
+  token: string | null = localStorage.getItem('token')
+  isAuthor: boolean = false;
+  errors: Object | undefined
   constructor(private bookService: BookService, private activatedRoute: ActivatedRoute, private authService: AuthService, private router: Router) {
     this.getBook()
   }
@@ -27,23 +23,48 @@ export class DetailsComponent {
   getBook(): void {
     this.book = undefined;
     const id = this.activatedRoute.snapshot.params['id'];
-    this.bookService.getOneBook(id).subscribe(book => this.book = book)
+    this.bookService.getOneBook(id).subscribe({
+      next: (book) => {
+        this.book = book
+        if(this.authService.user?._id == book.owner._id){
+          console.log(this.authService.user)
+          this.isAuthor = true
+        }else {
+          this.isAuthor = false;
+        }
+      },
+      error: (err) => {
+        this.errors = err.error?.error
+        this.router.navigate(['/'])
+      }
+    })
   }
   editBook(form: NgForm) {
+    if(this.authService.user?._id != this.book?.owner._id || !this.token){
+      this.router.navigate(['/'])
+    }
     const id = this.book?._id;
     this.bookService.editBook(id, form.value).subscribe({
       next: (book) => {
         this.book = book
         this.inEditMode = false;
       },
-      error: (err) => console.log(err)
+      error: (err) => {
+        this.errors = err.error?.error
+      }
     })
   }
   delete(){
+    if(this.authService.user?._id != this.book?.owner._id || !this.token){
+      console.log(this.authService.user)
+      this.router.navigate(['/'])
+    }
     const id = this.book?._id;
     this.bookService.deleteBook(id).subscribe({
       next: () => this.router.navigate(['/']),
-      error: (err) => console.log(err)
+      error: (err) => {
+        this.errors = err.error?.error
+      }
     })
   }
 }

@@ -5,28 +5,36 @@ import { RegisterComponent } from './auth/register/register.component';
 import { CatalogComponent } from './books/catalog/catalog.component';
 import { HomeComponent } from './core/home/home.component';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
+import { AuthActivate } from './shared/guards/auth.activate';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
     component: HomeComponent,
-
   },
   {
     path: 'register',
     component: RegisterComponent,
+    canActivate: [AuthActivate],
     data: {
-      title: 'Register',
-      loginRequired: true
+      'guest': true,
     }
   },
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [AuthActivate],
     data: {
-      title: 'Login',
-      loginRequired: true
+      'guest': true,
+    }
+  },
+  {
+    path: 'books',
+    component: CatalogComponent,
+    canActivate: [AuthActivate],
+    data: {
+      'guest': false,
     }
   },
 ];

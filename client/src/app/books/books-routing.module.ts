@@ -6,14 +6,22 @@ import { CatalogComponent } from "./catalog/catalog.component";
 import { DetailsComponent } from "./details/details.component";
 
 const routes: Routes = [
+  // {
+  //   path: 'books',
+  //   component: CatalogComponent,
+  //   canActivate: [AuthActivate],
+  //   data: {
+  //     title: 'Catalog',
+  //     loginRequired: true
+  //   }
+  // },
   {
-    path: 'books',
-    component: CatalogComponent,
-    // canActivate: [AuthActivate],
-    // data: {
-    //   title: 'Catalog',
-    //   loginRequired: true
-    // }
+    path: 'add',
+    component: AddComponent,
+    canActivate: [AuthActivate],
+    data: {
+        'guest': false,
+    }
   },
   {
     path: 'books',
@@ -29,10 +37,6 @@ const routes: Routes = [
       },
     ]
   },
-  {
-    path: 'add',
-    component: AddComponent
-  }
 
 
 ]

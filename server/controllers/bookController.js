@@ -19,7 +19,10 @@ router.get('/', async (req, res) => {
     const books = await getAllBooks()
     res.status(200).json(books)
 })
-
+// router.get('/most', async (req, res) => {
+//     const cars = await getTop3Cars()
+//     res.status(200).json(cars)
+// })
 
 router.get('/:id', async (req, res) => {
     const id = req.params.id;

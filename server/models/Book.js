@@ -25,11 +25,19 @@ const bookSchema = new mongoose.Schema({
         required: true,
         type: String,
     },
+    wishingList: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'User',
+        }
+    ],
     owner: {
         type: mongoose.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
     }
 });
-
+bookSchema.method('getWished', function () {
+    return this.wishingList.map(x => x._id);
+})
 const Book = new mongoose.model('Book', bookSchema);
 module.exports = Book;

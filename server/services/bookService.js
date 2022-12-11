@@ -26,10 +26,15 @@ const editBook = async (id, data) => {
         return error
     }
 }
+const getThreeBooks = async () => {
+    const books = await Book.find({}).sort({createdAt: -1}).limit(3)
+    return books
+}
 
 module.exports = {
     getAllBooks,
     addBook,
     getOneBook,
     editBook,
+    getThreeBooks
 }

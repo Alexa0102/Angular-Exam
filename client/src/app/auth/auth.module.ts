@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from '../core/core.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -19,12 +20,13 @@ import { CoreModule } from '../core/core.module';
   ],
   imports: [
     CommonModule,
+    RouterModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
     CoreModule,
     MaterialsModule,
-    HttpClientModule
   ],
 })
 export class AuthModule { }

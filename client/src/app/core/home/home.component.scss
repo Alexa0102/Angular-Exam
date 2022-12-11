@@ -1,47 +1,119 @@
-
-
-.welcome {
-    padding: 0.3em 0.5em;
-    border: 1px solid #999;
-    border-radius: 0.3em;
-    font-size: 0.8em;
-    margin-top: 1em;
-}
-
-.welcome h3 {
-    background-color: rgb(78, 77, 77);
-    border-radius: 0.3em;
+.container {
+    background-size: cover;
+    background-position: center;
     width: 100%;
-    padding: 0.3em 1em;
 }
 
-.welcome p {
-    padding: 1em;
-    border-bottom: 1px solid #999;
-    font-style: normal;
-}
-
-.welcome a {
+.container h2 {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: white;
-    text-decoration: none;
-    background-color:rgb(78, 77, 77);
-    border: none;
-    border-radius: 0.3em;
-    padding: 0.5em 5.2em;
-    margin: 1em;
+    font-size: 1.5rem;
 }
-
-.welcome a:hover {
+.buttons button {
+    width: 150px;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border: 1.5px solid black;
+    background-color:  rgb(78, 77, 77);
+    color: white;
+    border-radius: 20px;
+    padding: 5px 5px;
+    margin: 20px;
+    margin-bottom: 80px;
     cursor: pointer;
 }
-
-.welcome ul {
+.buttons {
     display: flex;
-    justify-content: space-evenly;
-    padding: 0;
-    margin: 1em;
+    justify-content: center;
+    align-items: flex-end;
+    color: white;
+}
+.top button{ 
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px 10px;
+    border: 1.5px solid black;
+    background-color:  rgb(78, 77, 77);
+    color: white;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    
 }
 
-.welcome li {
-    list-style: none;
+.container button:hover {
+    color: white;
+}
+
+.top {
+    // margin-left:5rem;
+    height: auto;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+}
+
+.top h1 {
+    text-align: center;
+    margin-top: 0.7rem;
+    color:rgb(78, 77, 77);
+}
+
+section {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+article {
+    margin: 20px;
+    position: relative;
+    background-color: white;
+    width: 300px;
+    border-radius: 15px;
+
+}
+
+.image {
+    height: 190px;
+}
+img {
+    width: 300px;
+    height: 190px;
+}
+
+article h1 {
+    font-size: 1rem;
+    padding: 20px;
+}
+
+p {
+    position: absolute;
+    width: 100px;
+    text-align: center;
+    background-color: #434343;
+    top: 58%;
+    right: 10%;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.info {
+    height: calc(300px - 190px);
+}
+
+section {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }

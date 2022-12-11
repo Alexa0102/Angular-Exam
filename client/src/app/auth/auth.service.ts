@@ -11,22 +11,22 @@ const apiUrl = environment.apiUrl
 })
 export class AuthService {
 
-  isLogged(){
-    if(localStorage.getItem('token')){
-      return true
-    }else{
-      return false
+  // private user$$ = new BehaviorSubject<undefined | null | IUser>(undefined);
+  // user$ = this.user$$.asObservable().pipe(
+    //   filter((val): val is IUser | null => val !== undefined)
+    // );
+    
+    
+    user: null | IUser | undefined;
+    
+    constructor(private http: HttpClient, private router: Router) { }
+    isLogged(){
+      if(localStorage.getItem('token')){
+        return true
+      }else{
+        return false
+      }
     }
-  }
-  private user$$ = new BehaviorSubject<undefined | null | IUser>(undefined);
-  user$ = this.user$$.asObservable().pipe(
-    filter((val): val is IUser | null => val !== undefined)
-  );
-
-  
-  user: null | IUser = null;
-
-  constructor(private http: HttpClient, private router: Router) { }
 
 
   register(data: {}){
@@ -37,10 +37,17 @@ export class AuthService {
       })
     )
   }
+  // return this.http.post<IUser>(`${API_URL}/register`, data).pipe(
+  //   tap((user) => {
+  //     this.user = user
+  //     localStorage.setItem('token', this.user.accessToken)
+  //   })
+  // )
   login(data: {}){
     return this.http.post<IUser>(`${apiUrl}/login`, data).pipe(
       tap((user) => {
         this.user = user
+        console.log(user.email)
         localStorage.setItem('token', this.user.accessToken)
       })
     )

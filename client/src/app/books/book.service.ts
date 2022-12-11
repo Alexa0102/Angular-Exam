@@ -25,5 +25,8 @@ export class BookService {
   deleteBook(id: string | undefined){
     return this.http.delete(`${apiUrl}/books/${id}`)
   }
+  getThreeBooks(){
+    return this.http.get<IBook[]>(`${apiUrl}/books`)
+  }
   
 }

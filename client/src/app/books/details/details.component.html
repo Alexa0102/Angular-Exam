@@ -12,7 +12,7 @@
                 <h3>Book's Author: <span>{{book?.author}}</span></h3>
                 <h3>Year: <span>{{book?.year}}</span></h3>
                 <h3>Description: <span>{{book?.description}}</span></h3>
-                <h3>Owner: <span>{{book?.owner}}</span></h3>
+                <h3>Owner: <span>{{book?.owner?.username}}</span></h3>
 
                 <div class="buttons">
                     <ng-container *ngIf="isAuthor">
