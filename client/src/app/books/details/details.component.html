@@ -23,6 +23,7 @@
                         <button>Add to favourite</button>
                     </ng-container> -->
                 </div>
+                <p class="mainError" *ngIf="errors">{{errors}}</p>
             </div>
         </article>
     </ng-container>
@@ -45,24 +46,23 @@
                         <p class="error" *ngIf="name.errors?.['minlength']">You should have at least 3 characters!</p>
                     </ng-container>
                     <label>Book's Author</label>
-                    <input #author="ngModel" ngModel type="text" name="author" required minlength="10"
+                    <input #author="ngModel" ngModel type="text" name="author" required minlength="5"
                         [ngModel]="book?.author">
-                        <ng-container *ngIf="author.touched">
-                            <p class="error" *ngIf="author.errors?.['required']">Book's name is required!</p>
-                            <p class="error" *ngIf="author.errors?.['minlength']">You should have at least 3 characters!</p>
-                        </ng-container>
+                    <ng-container *ngIf="author.touched">
+                        <p class="error" *ngIf="author.errors?.['required']">Book's name is required!</p>
+                        <p class="error" *ngIf="author.errors?.['minlength']">You should have at least 5 characters!</p>
+                    </ng-container>
                     <label>ImageUrl</label>
                     <input #imageUrl="ngModel" ngModel type="text" name="imageUrl" required [ngModel]="book?.imageUrl">
                     <ng-container *ngIf="imageUrl.touched">
                         <p class="error" *ngIf="imageUrl.errors?.['required']">ImageUrl is required!</p>
                     </ng-container>
                     <label>Year</label>
-                    <input #year="ngModel" ngModel type="text" name="year" required min="1950" max="2022"
-                        [ngModel]="book?.year">
+                    <input #year="ngModel" ngModel type="text" name="year" required max="2022" [ngModel]="book?.year">
                     <ng-container *ngIf="year.touched">
                         <p class="error" *ngIf="year.errors?.['required']">Year is required!</p>
-                        <p class="error" *ngIf="year.errors?.['min']">book year should be newer than 1950's!</p>
-                        <p class="error" *ngIf="year.errors?.['max']">book year cannot be in the future!</p>
+                        <p class="error" *ngIf="year.value.includes(' ')">Year cannot contain any spaces!</p>
+                        <p class="error" *ngIf="year.errors?.['max']">Book year cannot be in the future!</p>
                     </ng-container>
                     <label>Description</label>
                     <input #description="ngModel" ngModel type="text" name="description" required minlength="10"

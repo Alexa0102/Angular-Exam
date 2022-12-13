@@ -27,7 +27,7 @@ export class DetailsComponent {
     this.bookService.getOneBook(id).subscribe({
       next: (book) => {
         this.book = book
-        this.isAuthor = true
+        // this.isAuthor = true
         if (this.authService.user?._id == book.owner._id) {
           this.isAuthor = true
         } 
@@ -36,7 +36,7 @@ export class DetailsComponent {
         }
       },
       error: (err) => {
-        // this.errors = err.error?.error
+        this.errors = err.error?.error
         console.log(err)
       }
     })
@@ -55,7 +55,7 @@ export class DetailsComponent {
         this.inEditMode = false;
       },
       error: (err) => {
-        // this.errors = err.error?.error
+        this.errors = err.error?.error
         console.log(err)
       }
     })
@@ -67,7 +67,7 @@ export class DetailsComponent {
     }
     const id = this.book?._id;
     this.bookService.deleteBook(id).subscribe({
-      next: () => this.router.navigate(['/catalog']),
+      next: () => this.router.navigate(['/books']),
       error: (err) => {
         this.errors = err.error?.error
       }

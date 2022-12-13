@@ -1,12 +1,13 @@
-const { getAllBooks, addBook, getOneBook, editBook, getProfileBooks, getThreeBooks } = require('../services/bookService');
+const { getAllBooks, addBook, getOneBook, editBook, getProfileBooks, getThreeBooks,deleteBook } = require('../services/bookService');
 const { updateBooks } = require('../services/userService');
 const jwtDecode = require('jwt-decode');
+const User = require('../models/User');
 const router = require('express').Router();
 
 router.post('/', async (req, res) => {
+    const data = req.body;
+    const token = jwtDecode(data.token);
     try {
-        const data = req.body;
-        const token = jwtDecode(data.token);
         const userId = token._id;
         const book = await addBook(data, userId)
         res.status(201).json(book)
@@ -70,5 +71,10 @@ router.put('/:id', async (req, res) => {
         res.status(400).json({ error: error.message })
     }
 })
+
+router.delete('/:id', async (req, res) => {
+    await deleteBook(req.params.id);
+    res.status(200).json('book deleted!')
+});
 
 module.exports = router;

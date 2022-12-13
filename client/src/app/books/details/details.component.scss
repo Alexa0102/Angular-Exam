@@ -155,7 +155,14 @@ input[type="submit"] {
     font-size: 0.9rem;
     font-weight: bold;
 }
-
+.mainError {
+    text-align: center;
+    color: red;
+    /* padding-left: 10px; */
+    margin-top: 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
 // button:disabled {
 //     border: 1px solid #999999;
 //   background-color: #cccccc;

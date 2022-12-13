@@ -19,7 +19,6 @@ export class AuthService {
     
     user: null | IUser | undefined;
     
-    
     constructor(private http: HttpClient, private router: Router) { }
     isLogged(){
       if(localStorage.getItem('token')){
@@ -28,6 +27,7 @@ export class AuthService {
         return false
       }
     }
+
 
 
   register(data: {}){

@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AddComponent } from './add/add.component';
 import { DetailsComponent } from './details/details.component';
-import { EditComponent } from './edit/edit.component';
 
 
 
@@ -15,7 +14,6 @@ import { EditComponent } from './edit/edit.component';
     CatalogComponent,
     AddComponent,
     DetailsComponent,
-    EditComponent
   ],
   imports: [
     CommonModule,

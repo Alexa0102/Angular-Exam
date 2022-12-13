@@ -1,49 +1,52 @@
 <div class="container">
     <div class="form">
-        <form #form="ngForm" class="add"(ngSubmit)="addBook(form)">
+        <form #form="ngForm" class="add" (ngSubmit)="addBook(form)">
             <fieldset>
                 <h1>Add Book</h1>
-              
-                    <label><span>Book's name</span></label>
-                    <input #name="ngModel" ngModel type="text" name="name" required minlength="3" placeholder="It Ends With Us">
 
-                
-                <ng-container *ngIf="name.touched" >
+                <label><span>Book's name</span></label>
+                <input #name="ngModel" ngModel type="text" name="name" required minlength="3"
+                    placeholder="It Ends With Us">
+
+
+                <ng-container *ngIf="name.touched">
                     <p class="error" *ngIf="name.errors?.['required']">Name is required!</p>
                     <p class="error" *ngIf="name.errors?.['minlength']">You should have at least 3 characters!</p>
                 </ng-container>
-                
 
-                    <label><span>Author</span></label>
-                    <input #author="ngModel" ngModel type="text" name="author" required minlength="5" placeholder="Colleen Hoover">
-                
+
+                <label><span>Author</span></label>
+                <input #author="ngModel" ngModel type="text" name="author" required minlength="5"
+                    placeholder="Colleen Hoover">
+
                 <ng-container *ngIf="author.touched">
                     <p class="error" *ngIf="author.errors?.['required']">Author is required!</p>
                     <p class="error" *ngIf="author.errors?.['minlength']">You should have at least 5 characters!</p>
                 </ng-container>
-               
 
-                    <label><span>Year of publication</span></label>
-                    <input #year="ngModel" ngModel type="text" name="year" required placeholder="2018">
-                
+
+                <label><span>Year of publication</span></label>
+                <input #year="ngModel" ngModel type="text" name="year" required max="2022" >
+
                 <ng-container *ngIf="year.touched">
-                    <p class="error" *ngIf="year.errors?.['required']">Horsepower are required!</p>
-                    <p class="error" *ngIf="year.value.includes(' ')">Horsepower cannot contain any spaces!</p>
+                    <p class="error" *ngIf="year.errors?.['required']">Year are required!</p>
+                    <p class="error" *ngIf="year.errors?.['max']">Book year cannot be in the future!</p>
+                    <p class="error" *ngIf="year.value.includes(' ')">Year cannot contain any spaces!</p>
                 </ng-container>
-               
-                    <label><span>ImageUrl</span></label>
-                    <input #imageUrl="ngModel" ngModel type="text" name="imageUrl" required placeholder="imageUrl">
-                    
-                
+
+                <label><span>ImageUrl</span></label>
+                <input #imageUrl="ngModel" ngModel type="text" name="imageUrl" required placeholder="imageUrl">
+
+
                 <ng-container *ngIf="imageUrl.touched">
                     <p class="error" *ngIf="imageUrl.errors?.['required']">ImageUrl is required!</p>
                 </ng-container>
-                
-                    <label><span>Description</span></label>
-                    <input #description="ngModel" ngModel type="text" name="description" required minlength="10"
-                        maxlength="50" placeholder="The best book ever!">
 
-                
+                <label><span>Description</span></label>
+                <input #description="ngModel" ngModel type="text" name="description" required minlength="10"
+                    maxlength="50" placeholder="The best book ever!">
+
+
                 <ng-container *ngIf="description.touched">
                     <p class="error" *ngIf="description.errors?.['required']">Description is required!</p>
                     <p class="error" *ngIf="description.errors?.['minlength']">Description should have at least 10

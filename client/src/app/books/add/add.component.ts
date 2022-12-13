@@ -17,10 +17,11 @@ export class AddComponent {
     let token = localStorage.getItem('token');
     let value = form.value;
     value.token = token;
+
     this.bookService.addBook(value).subscribe({
       next: () => this.router.navigate(['/books']),
       error: (err) => {
-        this.errors = err?.error?.error
+        this.errors = err.error?.error
       }
     })
     console.log(value)
