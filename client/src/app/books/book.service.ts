@@ -16,8 +16,8 @@ export class BookService {
   getAllBooks() {
     return this.http.get<IBook[]>(`${apiUrl}/books`)
   }
-  getOneBook(id: string) {
-    return this.http.get<IBook>(`${apiUrl}/books/${id}`, { withCredentials: true })
+  getOneBook(_id: string) {
+    return this.http.get<IBook>(`${apiUrl}/books/${_id}`)
   }
   editBook(id: string | undefined, data: {}){
     return this.http.put<IBook>(`${apiUrl}/books/${id}`, data)
@@ -26,7 +26,7 @@ export class BookService {
     return this.http.delete(`${apiUrl}/books/${id}`)
   }
   getThreeBooks(){
-    return this.http.get<IBook[]>(`${apiUrl}/books`)
+    return this.http.get<IBook[]>(`${apiUrl}/books/top`)
   }
   
 }

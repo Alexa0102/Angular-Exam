@@ -1,13 +1,12 @@
 const Book = require("../models/Book")
 
 
-const addBook = async (book, id) => {
+const addBook = async (book,id) => {
     try {
         book.owner = id;
-        return await Book.create({...book})
+        return await Book.create({ ...book })
     } catch (error) {
-        console.log(error)
-        return error
+        throw new Error(error)
     }
 }
 
@@ -16,9 +15,14 @@ const getAllBooks = async () => {
 }
 
 const getOneBook = async (id) => {
-    return await Book.findById(id)
+    return await Book.findById(id).populate('owner')
 }
 
+const getProfileBooks = async (_id) => {
+    const result = await Book.find({ owner: _id })
+    console.log(result)
+    return result
+}
 const editBook = async (id, data) => {
     try {
         return await Book.findByIdAndUpdate(id, {...data}, {runValidators: true})
@@ -27,14 +31,31 @@ const editBook = async (id, data) => {
     }
 }
 const getThreeBooks = async () => {
-    const books = await Book.find({}).sort({createdAt: -1}).limit(3)
-    return books
+    try{
+        const books = await Book.find({}).limit(3)
+        return books
+
+    }catch (error) {
+        console.error(error)
+    }
 }
 
+async function addUserToItem(bookId, userId) {
+    const existing = await Book.findById(bookId)
+    existing.wishingList.push(userId)
+
+    return existing.save()
+}
+const deleteBook = async (id) => {
+    await Book.findByIdAndDelete(id)
+}
 module.exports = {
     getAllBooks,
     addBook,
     getOneBook,
     editBook,
-    getThreeBooks
+    deleteBook,
+    getThreeBooks,
+    getProfileBooks,
+    addUserToItem
 }

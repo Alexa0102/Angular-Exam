@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
+import { ProfileComponent } from './auth/profile/profile.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { CatalogComponent } from './books/catalog/catalog.component';
 import { HomeComponent } from './core/home/home.component';
@@ -32,6 +33,14 @@ const routes: Routes = [
   {
     path: 'books',
     component: CatalogComponent,
+    canActivate: [AuthActivate],
+    data: {
+      'guest': false,
+    }
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
     canActivate: [AuthActivate],
     data: {
       'guest': false,

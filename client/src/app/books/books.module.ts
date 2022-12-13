@@ -20,6 +20,6 @@ import { DetailsComponent } from './details/details.component';
     BooksRoutingModule,
     RouterModule,
     FormsModule,
-  ]
+  ],
 })
 export class BooksModule { }

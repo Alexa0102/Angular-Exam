@@ -26,21 +26,21 @@ export class DetailsComponent {
     this.bookService.getOneBook(id).subscribe({
       next: (book) => {
         this.book = book
-        if(this.authService.user?._id == book.owner._id){
-          console.log(this.authService.user)
+        if (this.authService.user?._id == book.owner._id) {
           this.isAuthor = true
-        }else {
-          this.isAuthor = false;
-        }
+        } 
+        // else {
+        //   this.isAuthor = false;
+        // }
       },
       error: (err) => {
-        this.errors = err.error?.error
-        this.router.navigate(['/'])
+        // this.errors = err.error?.error
+        console.log(err)
       }
     })
   }
   editBook(form: NgForm) {
-    if(this.authService.user?._id != this.book?.owner._id || !this.token){
+    if (this.authService.user?._id != this.book?.owner._id || !this.token) {
       this.router.navigate(['/'])
     }
     const id = this.book?._id;
@@ -50,18 +50,19 @@ export class DetailsComponent {
         this.inEditMode = false;
       },
       error: (err) => {
-        this.errors = err.error?.error
+        // this.errors = err.error?.error
+        console.log(err)
       }
     })
   }
-  delete(){
-    if(this.authService.user?._id != this.book?.owner._id || !this.token){
+  delete() {
+    if (this.authService.user?._id != this.book?.owner._id || !this.token) {
       console.log(this.authService.user)
       this.router.navigate(['/'])
     }
     const id = this.book?._id;
     this.bookService.deleteBook(id).subscribe({
-      next: () => this.router.navigate(['/']),
+      next: () => this.router.navigate(['/catalog']),
       error: (err) => {
         this.errors = err.error?.error
       }

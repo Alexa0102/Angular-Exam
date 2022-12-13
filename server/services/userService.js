@@ -6,7 +6,8 @@ const { SECRET_KEY } = require('../environment');
 
 const validateToken = (token) => {
     try {
-        return jwt.verify(token, SECRET_KEY)
+        const data = jwt.verify(token, SECRET_KEY)
+        return data
 
     } catch (error) {
         throw new Error('Invalid token!')
@@ -27,36 +28,53 @@ const createAccessToken = (user) => {
     };
 }
 const register = async (username, email, password) => {
-    const existingEmail = await User.findOne({email})
-    const existingUsername = await User.findOne({username})
+    const existingEmail = await User.findOne({ email })
+    const existingUsername = await User.findOne({ username })
 
-    if(existingEmail){
+    if (existingEmail) {
         throw new Error('Email already exists!')
-    }else if(existingUsername){
+    } else if (existingUsername) {
         throw new Error('Username already exists!')
     }
-    const user = await User.create({username, email, password})
+    const user = await User.create({ username, email, password })
     return createAccessToken(user)
 }
 const login = async (email, password) => {
-    const user = await User.findOne({email});
-    if(!user){
+    const user = await User.findOne({ email });
+    if (!user) {
         throw new Error('Invalid email or password!')
     }
     const isUser = await bcrypt.compare(password, user.password)
-    if(isUser){
+    if (isUser) {
         return createAccessToken(user)
-    }else {
+    } else {
         throw new Error('Invalid email or password!')
     }
 }
 
-const updateBooks= async (_id, bookId) => {
-    const user = await User.findById(_id);
-    let array = user.books
-    array.push(bookId)
-    await User.findByIdAndUpdate(_id, {books: array})
-}
+// const updateBooks = async (_id, bookId) => {
+//     try {
+//         const user = await User.findById(_id);
+//         console.log(user)
+//         let array = user.books
+//         array.push(bookId)
+//         await User.findByIdAndUpdate(_id, { books: array })
+
+//     } catch (error) {
+//         throw new Error(error)
+//     }
+// }
+
+// const updateBooksOnUser = async (_id, bookId) => {
+//     try {
+//         const user = await User.findById(_id);
+//         let array = user.books
+//         array.push(bookId)
+//         await User.findByIdAndUpdate(_id, {books: array})
+//     } catch (error) {
+//         throw new Error(error)
+//     }
+// }
 const logout = (token) => {
     blacklist.add(token)
 }
@@ -65,5 +83,5 @@ module.exports = {
     register,
     createAccessToken,
     validateToken,
-    updateBooks
+
 }

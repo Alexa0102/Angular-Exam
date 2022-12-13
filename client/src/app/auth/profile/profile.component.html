@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="title">
+        <h1 *ngIf="books">BOOKS</h1>
+        <h1 *ngIf="isEmpty && !books">NO BOOKS TO SHOW</h1>
+    </div>
+    <section *ngIf="books">
+        <ng-container *ngFor="let book of books">
+            <article>
+                <p>{{book.name}}$</p>
+                <div class="image">
+                    <img src={{book.imageUrl}} alt="no-img">
+                </div>
+                <div class="info">
+                    <h1>{{book.author}} {{book.description}}</h1>
+                    <button [routerLink]="['/books', book._id]">Details</button>
+                </div>
+            </article>
+        </ng-container>
+    </section>
+</div>

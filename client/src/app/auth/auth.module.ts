@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -17,6 +18,7 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     RegisterComponent,
     LikedComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

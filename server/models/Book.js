@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
+const { Schema, model,  Types: { ObjectId } } = require('mongoose');
 
-const bookSchema = new mongoose.Schema({
+// const { ObjectId } = mongoose.Schema.Types;
+
+const bookSchema = new Schema({
     name: {
         required: true,
         type: String,
@@ -25,19 +28,19 @@ const bookSchema = new mongoose.Schema({
         required: true,
         type: String,
     },
+
     wishingList: [
         {
-            type: mongoose.Types.ObjectId,
+            type: [ObjectId],
             ref: 'User',
         }
     ],
-    owner: {
-        type: mongoose.Types.ObjectId,
-        ref: 'User',
-    }
+    owner: { type: ObjectId, ref: 'User'}
 });
+// , { timestamps: { createdAt: 'created_at' } }
+
 bookSchema.method('getWished', function () {
     return this.wishingList.map(x => x._id);
 })
-const Book = new mongoose.model('Book', bookSchema);
+const Book = model('Book', bookSchema);
 module.exports = Book;

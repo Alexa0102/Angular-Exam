@@ -14,11 +14,15 @@ export class AddComponent {
   constructor(private bookService: BookService, private router: Router) { }
 
   addBook(form: NgForm) {
-    this.bookService.addBook(form.value).subscribe({
+    let token = localStorage.getItem('token');
+    let value = form.value;
+    value.token = token;
+    this.bookService.addBook(value).subscribe({
       next: () => this.router.navigate(['/books']),
       error: (err) => {
         this.errors = err?.error?.error
       }
     })
+    console.log(value)
   }
 }

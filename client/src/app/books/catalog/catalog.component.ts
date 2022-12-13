@@ -8,17 +8,8 @@ import { BookService } from '../book.service';
   styleUrls: ['./catalog.component.scss']
 })
 export class CatalogComponent {
-  // books: IBook[] | undefined
-  // constructor(private bookService: BookService){
-  //   this.getAllBooks()
-  // }
-
-  // getAllBooks(){
-  //   this.books = undefined;
-  //   this.bookService.getAllBooks().pipe((book) => this.books = book)
-  // }
-
-  booksList: IBook[] | null = [];
+ 
+ booksList: IBook[] | null = [];
   hasBooks: boolean = false
 
   constructor(private bookService: BookService) { }

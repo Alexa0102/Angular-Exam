@@ -1,6 +1,8 @@
-const mongoose = require('mongoose');
+const { Schema, model , Types} = require('mongoose');
 const bcrypt = require('bcrypt')
-const userSchema = new mongoose.Schema({
+
+
+const userSchema = new Schema({
     username: {
         required: true,
         type: String,
@@ -17,6 +19,12 @@ const userSchema = new mongoose.Schema({
         minlength: [6, 'Password should have at least 6 characters!'],
         maxlength: [12, 'Password cannot have more than 12 characters!'],
     },
+    books: [
+        {
+            type: Types.ObjectId,
+            ref: 'Book',
+        }
+    ]
 })
 userSchema.pre('save', function (next) {
     bcrypt.hash(this.password, 10)
@@ -25,5 +33,6 @@ userSchema.pre('save', function (next) {
          return next()
     })
 })
-const User = new mongoose.model('User', userSchema);
-module.exports = User;
+const User = model('User', userSchema);
+
+module.exports = User
