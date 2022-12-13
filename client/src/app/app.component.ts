@@ -8,10 +8,10 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent {
   title = 'exam';
-  constructor(private authService: AuthService){
-    if(localStorage.getItem('token')){
-      authService.getProfileData().subscribe()
+  // constructor(private authService: AuthService){
+  //   if(localStorage.getItem('token')){
+  //     authService.getProfileData().subscribe()
 
-    }
-  }
+  //   }
+  // }
 }

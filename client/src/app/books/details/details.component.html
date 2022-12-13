@@ -44,13 +44,13 @@
                         <p class="error" *ngIf="name.errors?.['required']">Book's name is required!</p>
                         <p class="error" *ngIf="name.errors?.['minlength']">You should have at least 3 characters!</p>
                     </ng-container>
-                    <label>Year of publication</label>
-                    <input #year="ngModel" ngModel type="text" name="year" required minlength="2"
-                        [ngModel]="book?.year">
-                    <ng-container *ngIf="year.touched">
-                        <p class="error" *ngIf="year.errors?.['required']">Year of publication is required!</p>
-                        <p class="error" *ngIf="year.errors?.['minlength']">You should have at last 4 characters!</p>
-                    </ng-container>
+                    <label>Book's Author</label>
+                    <input #author="ngModel" ngModel type="text" name="author" required minlength="10"
+                        [ngModel]="book?.author">
+                        <ng-container *ngIf="author.touched">
+                            <p class="error" *ngIf="author.errors?.['required']">Book's name is required!</p>
+                            <p class="error" *ngIf="author.errors?.['minlength']">You should have at least 3 characters!</p>
+                        </ng-container>
                     <label>ImageUrl</label>
                     <input #imageUrl="ngModel" ngModel type="text" name="imageUrl" required [ngModel]="book?.imageUrl">
                     <ng-container *ngIf="imageUrl.touched">

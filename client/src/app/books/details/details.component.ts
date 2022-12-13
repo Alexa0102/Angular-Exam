@@ -19,6 +19,7 @@ export class DetailsComponent {
   constructor(private bookService: BookService, private activatedRoute: ActivatedRoute, private authService: AuthService, private router: Router) {
     this.getBook()
   }
+  
 
   getBook(): void {
     this.book = undefined;
@@ -26,12 +27,13 @@ export class DetailsComponent {
     this.bookService.getOneBook(id).subscribe({
       next: (book) => {
         this.book = book
+        this.isAuthor = true
         if (this.authService.user?._id == book.owner._id) {
           this.isAuthor = true
         } 
-        // else {
-        //   this.isAuthor = false;
-        // }
+        else {
+          this.isAuthor = false;
+        }
       },
       error: (err) => {
         // this.errors = err.error?.error
@@ -44,7 +46,10 @@ export class DetailsComponent {
       this.router.navigate(['/'])
     }
     const id = this.book?._id;
-    this.bookService.editBook(id, form.value).subscribe({
+    let token = localStorage.getItem('token');
+    let value = form.value;
+    value.token = token;
+    this.bookService.editBook(id, value).subscribe({
       next: (book) => {
         this.book = book
         this.inEditMode = false;

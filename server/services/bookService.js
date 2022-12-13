@@ -1,7 +1,8 @@
 const Book = require("../models/Book")
+const jwtDecode = require('jwt-decode');
 
 
-const addBook = async (book,id) => {
+const addBook = async (book, id) => {
     try {
         book.owner = id;
         return await Book.create({ ...book })
@@ -19,23 +20,26 @@ const getOneBook = async (id) => {
 }
 
 const getProfileBooks = async (_id) => {
-    const result = await Book.find({ owner: _id })
-    console.log(result)
-    return result
+    try {
+        const result = await Book.find({ owner: _id})
+        return result
+    } catch (err) {
+        console.error(err)
+    }
 }
 const editBook = async (id, data) => {
     try {
-        return await Book.findByIdAndUpdate(id, {...data}, {runValidators: true})
+        return await Book.findByIdAndUpdate(id, { ...data }, { runValidators: true })
     } catch (error) {
         return error
     }
 }
 const getThreeBooks = async () => {
-    try{
+    try {
         const books = await Book.find({}).limit(3)
         return books
 
-    }catch (error) {
+    } catch (error) {
         console.error(error)
     }
 }
