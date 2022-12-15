@@ -24,6 +24,7 @@ export class DetailsComponent {
   getBook(): void {
     this.book = undefined;
     const id = this.activatedRoute.snapshot.params['id'];
+
     this.bookService.getOneBook(id).subscribe({
       next: (book) => {
         this.book = book

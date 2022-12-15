@@ -1,4 +1,5 @@
 const { register, login } = require('../services/userService');
+const jwtDecode = require('jwt-decode');
 
 const router = require('express').Router();
 
@@ -31,10 +32,17 @@ router.get('/logout', (req, res) => {
 });
 
 
-router.get('/user', (req, res) => {
-    const user = req.user;
-    if(user){
-        res.status(200).json(user)
+router.post('/profile', (req, res) => {
+    const data = req.body;
+    const token = jwtDecode(data.token);
+    try {
+        const username = token.username;
+        const email = token.email;
+   
+        res.status(200).json({"username": username, "email": email});
+        res.end();
+    } catch (error) {
+        console.log(error);
     }
 })
 module.exports = router;

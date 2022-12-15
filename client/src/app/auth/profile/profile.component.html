@@ -3,15 +3,24 @@
         <h1 *ngIf="books">BOOKS</h1>
         <h1 *ngIf="isEmpty && !books">NO BOOKS TO SHOW</h1>
     </div>
+    <div class="user-info">
+    <div class="username">
+        <h2>Username: {{user?.username}}</h2>
+    </div>
+    <div class="email">
+        <h3>Email: {{user?.email}}</h3>
+    </div>
+    </div>
     <section *ngIf="books">
         <ng-container *ngFor="let book of books">
             <article>
-                <p>{{book.name}}$</p>
+                <p>{{book.name}}</p>
                 <div class="image">
                     <img src={{book.imageUrl}} alt="no-img">
                 </div>
                 <div class="info">
-                    <h1>{{book.author}} {{book.description}}</h1>
+                    <h1>Author: {{book.description}}</h1>
+                    <!-- <h1>Description: {{book.description}}</h1> -->
                     <button [routerLink]="['/books', book._id]">Details</button>
                 </div>
             </article>

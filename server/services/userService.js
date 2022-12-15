@@ -65,16 +65,16 @@ const login = async (email, password) => {
 //     }
 // }
 
-// const updateBooksOnUser = async (_id, bookId) => {
-//     try {
-//         const user = await User.findById(_id);
-//         let array = user.books
-//         array.push(bookId)
-//         await User.findByIdAndUpdate(_id, {books: array})
-//     } catch (error) {
-//         throw new Error(error)
-//     }
-// }
+const updateBooksOnUser = async (_id, bookId) => {
+    try {
+        const user = await User.findById(_id);
+        let array = user.books
+        array.push(bookId)
+        await User.findByIdAndUpdate(_id, {books: array})
+    } catch (error) {
+        throw new Error(error)
+    }
+}
 const logout = (token) => {
     blacklist.add(token)
 }
@@ -83,5 +83,5 @@ module.exports = {
     register,
     createAccessToken,
     validateToken,
-
+    updateBooksOnUser
 }

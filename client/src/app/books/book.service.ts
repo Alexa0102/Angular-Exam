@@ -16,7 +16,7 @@ export class BookService {
   getAllBooks() {
     return this.http.get<IBook[]>(`${apiUrl}/books`)
   }
-  getOneBook(_id: string) {
+  getOneBook(_id: string,) {
     return this.http.get<IBook>(`${apiUrl}/books/${_id}`)
   }
   editBook(id: string | undefined, data: {}){

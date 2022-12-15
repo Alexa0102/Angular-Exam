@@ -11,26 +11,22 @@ const apiUrl = environment.apiUrl
 })
 export class AuthService {
 
-  // private user$$ = new BehaviorSubject<undefined | null | IUser>(undefined);
-  // user$ = this.user$$.asObservable().pipe(
-    //   filter((val): val is IUser | null => val !== undefined)
-    // );
-    
-    
-    user: null | IUser | undefined;
-    
-    constructor(private http: HttpClient, private router: Router) { }
-    isLogged(){
-      if(localStorage.getItem('token')){
-        return true
-      }else{
-        return false
-      }
+  user: null | IUser | undefined;
+  token: string | null = localStorage.getItem('token')
+
+
+  constructor(private http: HttpClient, private router: Router) { }
+  isLogged() {
+    if (localStorage.getItem('token')) {
+      return true
+    } else {
+      return false
     }
+  }
 
 
 
-  register(data: {}){
+  register(data: {}) {
     return this.http.post<IUser>(`${apiUrl}/register`, data).pipe(
       tap((user) => {
         this.user = user
@@ -39,7 +35,7 @@ export class AuthService {
     )
   }
 
-  login(data: {}){
+  login(data: {}) {
     return this.http.post<IUser>(`${apiUrl}/login`, data).pipe(
       tap((user) => {
         this.user = user
@@ -47,20 +43,13 @@ export class AuthService {
       })
     )
   }
-
-  getProfileData(){
-    return this.http.get<IUser>(`${apiUrl}/user`).pipe(
-      tap((user) => {
-        if(user){
-          this.user = user;
-        }
-      })
-    )
+  getProfile(token: {}) {
+    return this.http.post<IUser>(`${apiUrl}/profile`, token);
   }
-  getProfileBooks(){
-    return this.http.get<IBook[]>(`${apiUrl}/books/mybooks`)
+  getProfileBooks(token: {}) {
+    return this.http.post<IBook[]>(`${apiUrl}/books/mybooks`, token)
   }
-  logout(){
+  logout() {
     this.user = null;
     return localStorage.removeItem('token')
   }

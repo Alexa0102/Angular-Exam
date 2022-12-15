@@ -22,16 +22,6 @@ router.get('/', async (req, res) => {
 })
 
 
-router.get('/mybooks', async (req, res) => {
-
-    const _id = req?.user?._id;  
-    // const data = req.body;
-    // const token = jwtDecode(data.token);
-    // const userId = token._id;
-    const books = await getProfileBooks(_id)
-    res.status(200).json(books)
-    res.end()
-})
 router.get('/top', async (req, res) => {
   
     const books = await getThreeBooks()
@@ -77,4 +67,14 @@ router.delete('/:id', async (req, res) => {
     res.status(200).json('book deleted!')
 });
 
+router.post('/mybooks', async (req, res) => {
+
+    // const _id = req?.user?._id;  
+    const data = req.body;
+    const token = jwtDecode(data.token);
+    const userId = token._id;
+    const books = await getProfileBooks(userId);
+    res.status(200).json(books)
+    res.end()
+})
 module.exports = router;
