@@ -29,7 +29,6 @@ button {
 }
 
 a {
-    border: none;
     background: none;
     padding-right: 15px;
     font-size: 15px;
@@ -37,6 +36,11 @@ a {
     color: rgb(78, 77, 77);
 }
 
-.logout li a{
-list-style-type: none;
+.logout a {
+    list-style-type: none;
+    background: none;
+    padding-right: 15px;
+    font-size: 15px;
+    text-decoration: none;
+    color: rgb(78, 77, 77);
 }
