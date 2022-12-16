@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { MaterialsModule } from '../materials/materials.module';
 import { RegisterComponent } from './register/register.component';
-import { LikedComponent } from './liked/liked.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,7 +16,6 @@ import { ProfileComponent } from './profile/profile.component';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    LikedComponent,
     ProfileComponent,
   ],
   imports: [

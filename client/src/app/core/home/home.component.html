@@ -8,7 +8,7 @@
             <img src={{book.imageUrl}} alt="no-img">
           </div>
           <div class="info">
-            <h1>{{book.name}}-{{book.author}}</h1>
+            <h1>{{book.name}} - {{book.author}}</h1>
             <!-- <button *ngIf="!isLogged" [routerLink]="['/books', book._id]">Details</button> -->
             <ng-container *ngIf="isLogged">
               <a [routerLink]="['/books', book._id]">

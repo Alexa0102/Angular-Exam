@@ -1,13 +1,14 @@
+// footer{
+// margin-top:210px;
+//     bottom:0px;
+//     width:100%;
+//     }
 footer {
-    background:  rgb(141, 190, 190)
-    ;
-    margin-top: 1em;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    max-width: 1366px;
+    background-color: rgb(141, 190, 190);
+    top: 100%;
+    position: sticky;
+    text-align: center;
 }
-
 footer p {
     margin: 0;
     padding: 0;
@@ -15,6 +16,3 @@ footer p {
     text-align: center;
 }
 
-footer span {
-    font-size: 1.5em;
-}

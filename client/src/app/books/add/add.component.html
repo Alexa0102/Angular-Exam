@@ -29,16 +29,17 @@
                 <input #year="ngModel" ngModel type="text" name="year" required max="2022" placeholder="2015" >
 
                 <ng-container *ngIf="year.touched">
-                    <p class="error" *ngIf="year.errors?.['required']">Year are required!</p>
+                    <p class="error" *ngIf="year.errors?.['required']">Year is required!</p>
                     <p class="error" *ngIf="year.errors?.['max']">Book year cannot be in the future!</p>
                     <p class="error" *ngIf="year.value.includes(' ')">Year cannot contain any spaces!</p>
                 </ng-container>
 
                 <label><span>ImageUrl</span></label>
-                <input #imageUrl="ngModel" ngModel type="text" name="imageUrl" required placeholder="imageUrl">
+                <input #imageUrl="ngModel" ngModel type="text" name="imageUrl" pattern="^https?://.+" required placeholder="imageUrl">
 
 
                 <ng-container *ngIf="imageUrl.touched">
+                    <p class="error" *ngIf="imageUrl.errors?.['pattern']">You must give a URL!</p>
                     <p class="error" *ngIf="imageUrl.errors?.['required']">ImageUrl is required!</p>
                 </ng-container>
 
