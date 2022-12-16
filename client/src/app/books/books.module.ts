@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AddComponent } from './add/add.component';
 import { DetailsComponent } from './details/details.component';
+import { AuthModule } from '../auth/auth.module';
 
 
 
@@ -16,6 +17,7 @@ import { DetailsComponent } from './details/details.component';
     DetailsComponent,
   ],
   imports: [
+    AuthModule,
     CommonModule,
     BooksRoutingModule,
     RouterModule,

@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { PageNotFoundComponent } from "../core/page-not-found/page-not-found.component";
 import { AuthActivate } from "../shared/guards/auth.activate";
 import { AddComponent } from "./add/add.component";
 import { CatalogComponent } from "./catalog/catalog.component";
@@ -37,6 +38,13 @@ const routes: Routes = [
       },
     ]
   },
+  // {
+  //   path: '**',
+  //   component: PageNotFoundComponent,
+  //   data: {
+  //     title: '404 Not Found'
+  //   }
+  // }
 
 
 ]

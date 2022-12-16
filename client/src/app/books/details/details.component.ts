@@ -11,24 +11,27 @@ import { BookService } from '../book.service';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent {
+  get isLogged(): boolean {
+    return this.authService.isLogged();
+  }
+  
   book: IBook | undefined;
+  isAuthor: boolean = false;
   inEditMode: boolean = false;
   token: string | null = localStorage.getItem('token')
-  isAuthor: boolean = false;
   errors: Object | undefined
+ 
   constructor(private bookService: BookService, private activatedRoute: ActivatedRoute, private authService: AuthService, private router: Router) {
-    this.getBook()
+    this.getBook()    
   }
   
 
   getBook(): void {
     this.book = undefined;
     const id = this.activatedRoute.snapshot.params['id'];
-
     this.bookService.getOneBook(id).subscribe({
       next: (book) => {
         this.book = book
-        // this.isAuthor = true
         if (this.authService.user?._id == book.owner._id) {
           this.isAuthor = true
         } 

@@ -44,12 +44,7 @@ const getThreeBooks = async () => {
     }
 }
 
-async function addUserToItem(bookId, userId) {
-    const existing = await Book.findById(bookId)
-    existing.wishingList.push(userId)
 
-    return existing.save()
-}
 const deleteBook = async (id) => {
     await Book.findByIdAndDelete(id)
 }
@@ -61,5 +56,4 @@ module.exports = {
     deleteBook,
     getThreeBooks,
     getProfileBooks,
-    addUserToItem
 }

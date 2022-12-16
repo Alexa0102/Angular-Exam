@@ -49,6 +49,10 @@ export class AuthService {
   getProfileBooks(token: {}) {
     return this.http.post<IBook[]>(`${apiUrl}/books/mybooks`, token)
   }
+  
+  editUser(id: string | undefined, data: {}) {
+    return this.http.put<IUser>(`${apiUrl}/profile/${id}`, data)
+  }
   logout() {
     this.user = null;
     return localStorage.removeItem('token')

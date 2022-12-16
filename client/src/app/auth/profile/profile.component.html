@@ -1,20 +1,27 @@
-<div class="container">
+<ng-container *ngIf="!inEditMode">
     <div class="title">
         <h1 *ngIf="books">BOOKS</h1>
         <h1 *ngIf="isEmpty && !books">NO BOOKS TO SHOW</h1>
     </div>
-    <div class="user-info">
-    <div class="username">
-        <h2>Username: {{user?.username}}</h2>
-    </div>
-    <div class="email">
-        <h3>Email: {{user?.email}}</h3>
-    </div>
-    </div>
+    
+        <div class="container">
+            <div class="user-info">
+                <div class="username">
+                    <h2>Username: {{user?.username}}</h2>
+                </div>
+                <div class="email">
+                    <h3>Email: {{user?.email}}</h3>
+                </div>
+                <!-- <button (click)="inEditMode = true">Edit Profile</button> -->
+            </div>
+        </div>
+
+
+
     <section *ngIf="books">
         <ng-container *ngFor="let book of books">
             <article>
-                <p>{{book.name}}</p>
+                <h3>{{book.name}}</h3>
                 <div class="image">
                     <img src={{book.imageUrl}} alt="no-img">
                 </div>
@@ -26,4 +33,60 @@
             </article>
         </ng-container>
     </section>
-</div>
+</ng-container>
+
+<!-- <ng-container *ngIf="inEditMode">
+    <div class="form">
+
+        <form [formGroup]="form" (ngSubmit)="onEditUser()">
+            <fieldset>
+                <h1>Edit profile</h1>
+
+
+                <label for="username"><span>Username</span></label>
+                <input class="input-error" type="text" formControlName="username" id="username"
+                    placeholder="{{user?.username}}">
+
+                <ng-container *ngIf="form.get('username')?.touched">
+                    <p *ngIf="form.get('username')?.errors?.['required']" class="error">
+                        Username is required!
+                    </p>
+                    <p *ngIf="form.get('username')?.errors?.['minlength']" class="error">
+                        Username should be longer than 5 chars
+                    </p>
+                </ng-container>
+
+
+                <label for="email"><span>Email</span></label>
+                <input class="input-error" type="email" formControlName="email" id="email"
+                    placeholder="{{user?.email}}">
+
+                <ng-container *ngIf="form.get('email')?.touched">
+                    <p class="error" *ngIf="form.get('email')?.errors?.['required']">
+                        Email is required!
+                    </p>
+                    <p class="error" *ngIf="form.get('email')?.errors?.['appEmailValidator']">
+                        Email is not valid!
+                    </p>
+                </ng-container>
+
+
+
+                <label for="password"><span>Password</span></label>
+                <input class="input-error" type="password" formControlName="password" id="password"
+                    placeholder="{{user?.password}}">
+
+                <ng-container *ngIf="form.get('password')?.get('password')?.touched">
+                    <p class="error" *ngIf="form.get('password')?.get('password')?.errors?.['required']">
+                        Password is required!
+                    </p>
+                    <p class="error" *ngIf="form.get('password')?.get('password')?.errors?.['minlength']">
+                        Password must be at least 5 characters!
+                    </p>
+                </ng-container>
+                <input [disabled]="form.invalid" type="submit" value="Edit Profile">
+
+            </fieldset>
+        </form>
+    </div>
+</ng-container> -->

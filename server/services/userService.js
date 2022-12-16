@@ -51,37 +51,17 @@ const login = async (email, password) => {
         throw new Error('Invalid email or password!')
     }
 }
-
-// const updateBooks = async (_id, bookId) => {
+// const updateUser = async (id, data) => {
 //     try {
-//         const user = await User.findById(_id);
-//         console.log(user)
-//         let array = user.books
-//         array.push(bookId)
-//         await User.findByIdAndUpdate(_id, { books: array })
-
+//         return await User.findByIdAndUpdate(id, { ...data }, { runValidators: true });
 //     } catch (error) {
-//         throw new Error(error)
+//         return error;
 //     }
 // }
 
-const updateBooksOnUser = async (_id, bookId) => {
-    try {
-        const user = await User.findById(_id);
-        let array = user.books
-        array.push(bookId)
-        await User.findByIdAndUpdate(_id, {books: array})
-    } catch (error) {
-        throw new Error(error)
-    }
-}
-const logout = (token) => {
-    blacklist.add(token)
-}
 module.exports = {
     login,
     register,
     createAccessToken,
     validateToken,
-    updateBooksOnUser
 }
