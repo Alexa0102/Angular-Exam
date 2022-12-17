@@ -45,13 +45,6 @@ const routes: Routes = [
       'guest': false,
     }
   },
-  // {
-  //   path: '**',
-  //   component: PageNotFoundComponent,
-  //   data: {
-  //     title: '404 Not Found'
-  //   }
-  // }
 ];
 
 @NgModule({
