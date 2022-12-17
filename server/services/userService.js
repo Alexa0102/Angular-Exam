@@ -51,13 +51,6 @@ const login = async (email, password) => {
         throw new Error('Invalid email or password!')
     }
 }
-// const updateUser = async (id, data) => {
-//     try {
-//         return await User.findByIdAndUpdate(id, { ...data }, { runValidators: true });
-//     } catch (error) {
-//         return error;
-//     }
-// }
 
 module.exports = {
     login,

@@ -45,16 +45,4 @@ router.post('/profile', (req, res) => {
         console.log(error);
     }
 })
-// router.put('/profile/:id', async (req, res) => {
-//     const data = req.body;
-    
-//     try {
-//         const token = jwtDecode(data.token);
-//         const userId = token._id;
-//         await updateUser(userId, data);
-//         res.status(200).json(data);
-//     } catch (error) {
-//         res.status(400).json({ error: error.message });
-//     }
-// })
 module.exports = router;

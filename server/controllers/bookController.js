@@ -68,8 +68,6 @@ router.delete('/:id', async (req, res) => {
 });
 
 router.post('/mybooks', async (req, res) => {
-
-    // const _id = req?.user?._id;  
     const data = req.body;
     const token = jwtDecode(data.token);
     const userId = token._id;
