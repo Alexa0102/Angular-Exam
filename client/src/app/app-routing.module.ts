@@ -5,7 +5,6 @@ import { ProfileComponent } from './auth/profile/profile.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { CatalogComponent } from './books/catalog/catalog.component';
 import { HomeComponent } from './core/home/home.component';
-import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { AuthActivate } from './shared/guards/auth.activate';
 
 const routes: Routes = [

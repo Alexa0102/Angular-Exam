@@ -6,7 +6,6 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home/home.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthService } from '../auth/auth.service';
 import { AuthActivate } from '../shared/guards/auth.activate';
 
@@ -17,7 +16,6 @@ import { AuthActivate } from '../shared/guards/auth.activate';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +27,6 @@ import { AuthActivate } from '../shared/guards/auth.activate';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    PageNotFoundComponent
   ],
   providers: [AuthActivate]
 })

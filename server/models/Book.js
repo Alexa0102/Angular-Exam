@@ -29,13 +29,6 @@ const bookSchema = new Schema({
         required: true,
         type: String,
     },
-
-    wishingList: [
-        {
-            type: [ObjectId],
-            ref: 'User',
-        }
-    ],
     owner: { type: ObjectId, ref: 'User'}
 });
 // , { timestamps: { createdAt: 'created_at' } }
