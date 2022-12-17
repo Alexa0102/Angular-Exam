@@ -17,7 +17,6 @@ const bookSchema = new Schema({
     year: {
         required: true,
         type: Number,
-        max: [2022, 'Book year cannot be in the future!']
     },
     description: {
         required: true,

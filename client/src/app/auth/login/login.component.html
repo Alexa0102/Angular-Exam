@@ -4,7 +4,7 @@
   
       <p class="class form">
         <label for="email"><span>Email</span></label>
-        <input #emailInput="ngModel" class="input-error" ngModel required type="text" name="email" id="email"
+        <input #emailInput="ngModel" class="input-error" ngModel required type="text" email name="email" id="email"
           placeholder="john.doe">
       </p>
   
@@ -12,7 +12,7 @@
         <p class="error" *ngIf="emailInput.errors?.['required']">
           Email is required!
         </p>
-        <p class="error" *ngIf="emailInput.errors?.['appEmailValidator']">
+        <p class="error" *ngIf="emailInput.errors?.['email']">
           Email is not valid!
         </p>
       </ng-container>

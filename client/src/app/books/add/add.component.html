@@ -30,7 +30,7 @@
 
                 <ng-container *ngIf="year.touched">
                     <p class="error" *ngIf="year.errors?.['required']">Year is required!</p>
-                    <p class="error" *ngIf="year.errors?.['max']">Book year cannot be in the future!</p>
+                    <!-- <p class="error" *ngIf="year.errors?.['max']">Book year cannot be in the future!</p> -->
                     <p class="error" *ngIf="year.value.includes(' ')">Year cannot contain any spaces!</p>
                 </ng-container>
 
