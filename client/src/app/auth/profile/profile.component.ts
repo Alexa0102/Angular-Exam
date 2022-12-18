@@ -72,22 +72,5 @@ export class ProfileComponent {
     })
 
   }
-  // editBook(form: NgForm) {
-   
-  //   const id = this.user?._id;
-  //   let token = localStorage.getItem('token');
-  //   let value = form.value;
-  //   value.token = token;
-  //   this.authService.editUser(id, value).subscribe({
-  //     next: (user) => {
-  //       this.user = user
-  //       // this.inEditMode = false;
-  //     },
-  //     error: (err) => {
-  //       this.errors = err.error?.error
-  //       console.log(err)
-  //     }
-  //   })
-  // }
 
 }
