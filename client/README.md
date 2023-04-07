@@ -1,5 +1,7 @@
 # BOOKOHOLIC
-App for listing favourite books made with Angular as a frond-end framework, Node.js for back-end and MongoDB for database.
+
+Single Page App for listing favourite books made with Angular as a front-end framework, Node.js for back-end and MongoDB for database. The app has verifies if the user is guest or has an account with working Login and Register Forms. If the user logs into their account options such as “Add unlisted book” and Profile Page are available. All of the books are stored in the database and can be explored in the Catalog Page. By selecting a book, dynamic route leads to a Details Page. If the user has added a book, they have the ability to edit or delete the book’s information from the database. The Profile Page contains the user’s info and the books that they have added. The Login and Register Forms have validation for email and password using Regex. Using interceptor for setting headers and X-Authorization. For back-end using Express.js for routing, JTW for verification, access token etc.
+
 
 
 ![page](https://user-images.githubusercontent.com/102182400/208155786-7a322b5c-ff60-4a87-9512-1e457b00413d.png)
