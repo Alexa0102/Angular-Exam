@@ -4,7 +4,6 @@ Single Page App for listing favourite books made with Angular as a front-end fra
 
 
 
-![page](https://user-images.githubusercontent.com/102182400/208155786-7a322b5c-ff60-4a87-9512-1e457b00413d.png)
 
 
 # More Information
