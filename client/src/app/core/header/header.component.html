@@ -4,13 +4,13 @@
         <span class="example-spacer"></span>
         <!-- toggle ako si lognat profil i logout + iconkite ako ne si tezi  -->
         <a routerLink="/">Home</a>
-        <a routerLink="/books">Catalog</a>
         <ng-container *ngIf="!isLogged">
             <a routerLink="/login">Login</a>
             <a routerLink="/register">Register</a>
-
+            
         </ng-container>
         <ng-container *ngIf="isLogged">
+            <a routerLink="/books">Catalog</a>
             <a routerLink="/add">Add Book</a>
             <a routerLink="/profile">Profile </a>
         </ng-container>

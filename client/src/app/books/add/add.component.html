@@ -24,13 +24,11 @@
                     <p class="error" *ngIf="author.errors?.['minlength']">You should have at least 5 characters!</p>
                 </ng-container>
 
-
-                <label><span>Year of publication</span></label>
-                <input #year="ngModel" ngModel type="text" name="year" required max="2022" placeholder="2015" >
-
+                <label>Year</label>
+                <input #year="ngModel" ngModel type="number" name="year" required max="2022" placeholder="2015">
                 <ng-container *ngIf="year.touched">
                     <p class="error" *ngIf="year.errors?.['required']">Year is required!</p>
-                    <p class="error" *ngIf="year.value.includes(' ')">Year cannot contain any spaces!</p>
+                    <p class="error" *ngIf="year.errors?.['max']">Book year cannot be in the future!</p>
                 </ng-container>
 
                 <label><span>ImageUrl</span></label>

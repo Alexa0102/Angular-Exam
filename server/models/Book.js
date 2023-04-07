@@ -17,6 +17,7 @@ const bookSchema = new Schema({
     year: {
         required: true,
         type: Number,
+        max: [2022, 'Car year cannot be in the future!']
     },
     description: {
         required: true,

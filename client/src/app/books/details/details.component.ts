@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { errHandler } from 'src/app/shared/errorHandler';
+
 import { IBook } from 'src/app/shared/interfaces';
 import { BookService } from '../book.service';
 
@@ -40,8 +42,8 @@ export class DetailsComponent {
         }
       },
       error: (err) => {
-        this.errors = err.error?.error
         console.log(err)
+        this.router.navigate(['**'])
       }
     })
   }
@@ -59,22 +61,35 @@ export class DetailsComponent {
         this.inEditMode = false;
       },
       error: (err) => {
-        this.errors = err.error?.error
-        console.log(err)
+        this.errors = errHandler(err.error?.error)
       }
     })
   }
-  delete() {
-    if (this.authService.user?._id != this.book?.owner._id || !this.token) {
+  deleteBook() {
+    // if (this.authService.user?._id != this.book?.owner._id || !this.token) {
+    //   console.log(this.authService.user)
+    //   this.router.navigate(['/'])
+    // }
+    const id = this.book?._id;
+    // this.bookService.deleteBook(id).subscribe({
+    //   next: () =>
+    //    this.router.navigate(['/books']),
+    //   error: (err) => {
+    //     this.errors = err.error?.error
+    //   }
+    // })
+    if (confirm('Are u sure u want to delete this book?')) {
+      if (this.authService.user?._id != this.book?.owner._id || !this.token) {
       console.log(this.authService.user)
       this.router.navigate(['/'])
     }
-    const id = this.book?._id;
-    this.bookService.deleteBook(id).subscribe({
-      next: () => this.router.navigate(['/books']),
-      error: (err) => {
-        this.errors = err.error?.error
-      }
-    })
+      this.bookService.deleteBook(id).subscribe({
+        next: () => 
+          this.router.navigate(['/books']),
+        error: (err) => {
+          this.errors = err.error?.error
+        }
+      })
+    }
   }
 }

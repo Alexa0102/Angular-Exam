@@ -17,7 +17,7 @@
                 <div class="buttons" *ngIf="isLogged">
                     <ng-container *ngIf="isAuthor">
                         <button (click)="inEditMode = true">Edit</button>
-                        <button (click)="delete()">Delete</button>
+                        <button (click)="deleteBook()">Delete</button>
                     </ng-container>
                 </div>
                 <p class="mainError" *ngIf="errors">{{errors}}</p>
@@ -52,10 +52,9 @@
                         <p class="error" *ngIf="imageUrl.errors?.['required']">ImageUrl is required!</p>
                     </ng-container>
                     <label>Year</label>
-                    <input #year="ngModel" ngModel type="text" name="year" required max="2022" [ngModel]="book?.year">
+                    <input #year="ngModel" ngModel type="number" name="year" required max="2022" [ngModel]="book?.year">
                     <ng-container *ngIf="year.touched">
                         <p class="error" *ngIf="year.errors?.['required']">Year is required!</p>
-                        <p class="error" *ngIf="year.value.includes(' ')">Year cannot contain any spaces!</p>
                         <p class="error" *ngIf="year.errors?.['max']">Book year cannot be in the future!</p>
                     </ng-container>
                     <label>Description</label>

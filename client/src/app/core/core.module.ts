@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from '../auth/auth.service';
 import { AuthActivate } from '../shared/guards/auth.activate';
+import { ErrorComponent } from './error/error.component';
 
 
 
@@ -16,6 +17,7 @@ import { AuthActivate } from '../shared/guards/auth.activate';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
+    ErrorComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,7 @@ import { AuthActivate } from '../shared/guards/auth.activate';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
+
   ],
   providers: [AuthActivate]
 })

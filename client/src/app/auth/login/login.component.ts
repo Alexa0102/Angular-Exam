@@ -2,6 +2,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { appEmailDomains } from 'src/app/shared/constants';
+import { errHandler } from 'src/app/shared/errorHandler';
+
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -22,9 +24,11 @@ export class LoginComponent {
   errors: string | undefined = undefined;
   loginHandler(form: NgForm): void{
     this.authService.login(form.value).subscribe({
-      next: () => this.router.navigate(['/']),
+      next: () => {
+        this.router.navigate(['/'])
+      },
       error: (err) => {
-        this.errors = err.error.error
+        this.errors = errHandler(err.error?.error)
       }
     })
   }

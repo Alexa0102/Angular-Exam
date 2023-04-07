@@ -3,7 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { AddComponent } from './books/add/add.component';
 import { CatalogComponent } from './books/catalog/catalog.component';
+import { DetailsComponent } from './books/details/details.component';
+import { ErrorComponent } from './core/error/error.component';
 import { HomeComponent } from './core/home/home.component';
 import { AuthActivate } from './shared/guards/auth.activate';
 
@@ -38,6 +41,18 @@ const routes: Routes = [
     }
   },
   {
+    path: 'books/:id',
+    component: DetailsComponent,
+  },
+  {
+    path: 'add',
+    component: AddComponent,
+    canActivate: [AuthActivate],
+    data: {
+      'guest': false,
+    }
+  },
+  {
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthActivate],
@@ -45,6 +60,14 @@ const routes: Routes = [
       'guest': false,
     }
   },
+  {
+    path: '**',
+    component: ErrorComponent,
+    data: {
+      title: '404 Not Found'
+    }
+  }
+
 ];
 
 @NgModule({
